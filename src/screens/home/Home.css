@@ -1,0 +1,25 @@
+.home-header {
+  background-color: #ff9999;
+  padding: 8px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.upcoming-movies {
+  height: 250px !important;
+}
+.homepage-movie-filter-container {
+  display: flex;
+}
+.relese-movie-container {
+  width: 76%;
+  margin: 16px;
+}
+.movie-filter-container {
+  width: 24%;
+  margin: 16px;
+}
+.releasedMovies {
+  height: 350px !important;
+  cursor: pointer;
+}

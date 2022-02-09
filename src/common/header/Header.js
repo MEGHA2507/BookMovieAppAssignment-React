@@ -13,8 +13,6 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
-import { ValidatorForm } from "react-material-ui-form-validator";
-import TextValidator from "react-material-ui-form-validator/lib/TextValidator";
 
 import { FormControl, InputLabel, Input } from "@material-ui/core";
 
@@ -73,7 +71,7 @@ const customStyles = {
 };
 
 export default function Header() {
-  let loggedIn = true; // later this variable will be dependent on access token
+  let loggedIn = false; // later this variable will be dependent on access token
   let releaseMovie = true;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -99,13 +97,15 @@ export default function Header() {
 
   function inputChangeHandler(e) {
     const state = loginForm;
+    console.log(e.target.value);
     state[e.target.name] = e.target.value;
 
     setloginForm({ ...loginForm, ...state });
+    console.log(loginForm);
   }
 
   function loginHandler() {
-    // authenticate hoga
+    console.log("state at login", loginForm);
 
     setloginForm({
       id: 0,
@@ -121,9 +121,10 @@ export default function Header() {
 
   function bookShowBtnHandler() {
     if (loggedIn === true) {
-      setIsOpen(true);
+      console.log(window.location.href);
+      window.location.href = window.location.href + "api/v1/" + "bookshow/id";
     } else {
-      console.log("route to book show page");
+      setIsOpen(true);
     }
   }
 
@@ -175,18 +176,16 @@ export default function Header() {
                 </Paper>
 
                 <TabPanel value={value} index={0}>
-                  {/* <ValidatorForm className="login-form" onSubmit={loginHandler}> */}
-
                   <FormControl>
                     <InputLabel htmlFor="username">Username*</InputLabel>
                     <Input
                       id="username"
+                      type="text"
+                      value={username}
                       aria-describedby="my-helper-text"
                       required
+                      onChange={inputChangeHandler}
                     />
-                    {/* <FormHelperText id="username-helper-text">
-                        We'll never share your email.
-                      </FormHelperText> */}
                   </FormControl>
 
                   <br />
@@ -196,12 +195,11 @@ export default function Header() {
                     <Input
                       id="password"
                       type="password"
+                      value={password}
                       required
                       aria-describedby="my-helper-text"
+                      onChange={inputChangeHandler}
                     />
-                    {/* <FormHelperText id="username-helper-text">
-                        We'll never share your email.
-                      </FormHelperText> */}
                   </FormControl>
 
                   <br />
@@ -213,25 +211,18 @@ export default function Header() {
                   >
                     Login
                   </Button>
-                  {/* </ValidatorForm> */}
                 </TabPanel>
 
                 <TabPanel value={value} index={1}>
                   <FormControl>
                     <InputLabel htmlFor="firstname">Firstname*</InputLabel>
                     <Input id="firstname" aria-describedby="my-helper-text" />
-                    {/* <FormHelperText id="username-helper-text">
-                        We'll never share your email.
-                      </FormHelperText> */}
                   </FormControl>
                   <br />
                   <br />
                   <FormControl>
                     <InputLabel htmlFor="lastname">Lastname*</InputLabel>
                     <Input id="lastname" aria-describedby="my-helper-text" />
-                    {/* <FormHelperText id="username-helper-text">
-                        We'll never share your email.
-                      </FormHelperText> */}
                   </FormControl>
                   <br />
                   <br />
@@ -242,9 +233,6 @@ export default function Header() {
                       type="email"
                       aria-describedby="my-helper-text"
                     />
-                    {/* <FormHelperText id="username-helper-text">
-                        We'll never share your email.
-                      </FormHelperText> */}
                   </FormControl>
                   <br />
                   <br />
@@ -255,9 +243,6 @@ export default function Header() {
                       type="password"
                       aria-describedby="my-helper-text"
                     />
-                    {/* <FormHelperText id="username-helper-text">
-                        We'll never share your email.
-                      </FormHelperText> */}
                   </FormControl>
                   <br />
                   <br />
@@ -268,9 +253,6 @@ export default function Header() {
                       type="phone"
                       aria-describedby="my-helper-text"
                     />
-                    {/* <FormHelperText id="username-helper-text">
-                        We'll never share your email.
-                      </FormHelperText> */}
                   </FormControl>
                   <br />
                   <br />
