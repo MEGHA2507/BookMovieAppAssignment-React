@@ -358,7 +358,7 @@ export default function Home(props) {
 
                 // >
                 <ImageListItem key={item.id} className="releasedMovies">
-                  <Link to={`/api/v1/movie/${item.id}`}>
+                  <Link to={`/movie/${item.id}`}>
                     <img
                       src={item.img}
                       alt={item.title}
